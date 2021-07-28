@@ -47,13 +47,14 @@ if (!file_exists($configFileName)) {
             if ($orderResponce['status'] == 1) {
                 $orderArray = $orderResponce['dataArray'];
 
-                $html = '<table><thead><tr>
-                    <td>id процесса</td>
-                    <td>Название процесса</td>
-                    <td>Описание процесса</td>
+                $html = '<div class="shop-overflow-table"><table class="table"><thead><tr>
+                    <td><b>id процесса</b></td>
+                    <td><b>Название процесса</b></td>
+                    <td><b>Описание процесса</b></td>
                     </tr>
                     </thead>';
 
+                $html .= '<tbody class="js-sortable-body">';
                 foreach ($orderArray as $index => $item) {
                     $orderUrl = $oneboxurl . $item['id'] . '/';
                     $html .= '<tr><td>'.$item['id'].'</td>
@@ -62,7 +63,7 @@ if (!file_exists($configFileName)) {
                         </tr>';
                 }
 
-                $html .= '</table>';
+                $html .= '</tbody></table></div>';
             } else {
                 $html = 'Произошла ошибка при получении процессов по api. ' .
                     implode(',', $orderResponce['errorArray']);
